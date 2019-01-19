@@ -295,8 +295,8 @@
             return;
         }
         _source = source;
-        NSURL *imageURL = [NSURL URLWithString:uri];
-        
+        NSURL *imageURL = [NSURL fileURLWithPath:uri];
+
         if (![[uri substringToIndex:4] isEqualToString:@"http"]) {
             @try {
                 UIImage *image = RCTImageFromLocalAssetURL(imageURL);
@@ -317,10 +317,10 @@
         }
 
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageURL];
-        
+
         if (source[@"headers"]) {
             NSMutableURLRequest *mutableRequest = [request mutableCopy];
-            
+
             NSDictionary *headers = source[@"headers"];
             NSEnumerator *enumerator = [headers keyEnumerator];
             id key;
